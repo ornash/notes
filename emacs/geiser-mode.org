@@ -1,0 +1,32 @@
+#+TITLE: Geiser Mode Help
+#+STARTUP: indent
+[[./geiser-mode.html][HTML Export]]
+
+* Installation
+- [[file:setup-startup.org::*Geiser%20REPL][URL]]
+* Startup
+- M-x run-geiser RET mit or M-x run-mit : Start geiser REPL
+- C-c C-s : Bind buffer to running geiser REPL. Have to do with every buffer.
+* Key Bindings
+** [[http://download-mirror.savannah.gnu.org/releases/geiser/0.10/geiser-manual-0.10.pdf][URL Geiser 0.10]]
+** Scheme Buffer
+- C-h m : bring up key bindings for current buffer.
+- C-c C-q : stop geiser REPL
+- C-c C-z : restart geiser REPL
+- C-c C-k : Compile and load the current buffer's file
+- C-c C-c : Compile and load function at cursor
+- M-. : move to function definition (*doesnt work* in geiser for mit-scheme)
+- M-, : move to previous location before M-. (*doesnt work* in geiser for mit-scheme)
+- C-c C-d C-d : Show documentaion for identifier at cursor
+- C-c C-d C-s : Show signature for identifier at cursor
+- M-TAB : complete symbol
+- C-c C-l : load scheme file
+** REPL
+- C-c C-z : toggle between REPL and Scheme buffer.
+- C-c C-q : kill Scheme process i.e. kill REPL
+- C-c M-o : clear REPL
+- M-. : move to function definition (*doesnt work* in geiser for mit-scheme)
+- C-c C-l : load scheme file
+- C-c C-r : add directory to load path
+* Issues
+- Some key-bindings dont work. [[https://lists.gnu.org/archive/html/help-guix/2017-04/msg00090.html][URL]]

@@ -1,0 +1,136 @@
+#+TITLE: Emacs Commands and Key Bindings Help
+#+STARTUP: indent
+[[./emacs-commands.html][HTML Export]]
+
+
+* Emacs Setup and Commands
+To change the background color and other attributes, use the command\ M-x customize-face, and specify\ default\ as the
+face to customize. Change the attributes and the sample text will reflect your settings. When you are satisfied,
+select\ Save for future sessions. Your changes will be saved to ~/.emacs and reloaded the next time you start the
+editor.
+
+* Commands
+- M-x : Type an emacs command.
+- M-! : execute shell command.
+- C-g : quit partially entered command. If you have typed an <ESC> by mistake, you can get rid of it with a C-g.
+- C-x 1 : One window (i.e., kill all other windows).
+- C-h m : bring up key-bindings for current buffer.
+- C-h k C-f : Open help page for given key sequence command. e.g. C-h k C-f: See how this window shrinks, while a new one appears to display documentation on the C-f command.
+- M-x <major mode name> : change major edit mode.. e.g. fundamental-mode, text-mode, lisp-mode etc.
+- M-x <minor mode name> : toggle minor mode between on/off.. e.g. auto-fill-mode.
+- M-x package-list-packages : returns list of all packages.
+- <ESC> <ESC> <ESC> : That is an all-purpose "get out" command
+- Put the mode name in the first nonblank line, preceded and followed by ‘-*-’:
+  https://www.gnu.org/software/emacs/manual/html_node/emacs/Choosing-Modes.html
+  e.g. ; -*-Text-*-
+
+* Font/View
+- C-x C-+ / C-x C--: ‘text-scale-adjust’ increase or decrease font size in buffer. C-/C+ to continue doing that.
+
+* Navigation Screen
+- C-v : move to next screen.
+- M-v : move to last screen.
+- C-l : clear screen and redisplay all the text, moving from center to bottom to top, better replacement for page-up and page-down.
+- M-</M-> : remember to use shift key to type it. Move to start/end of page.
+
+* Navigation Line
+- C-n/C-p : next and previous line
+- C-f/C-b : move forward/backward a character — M-f/M-b : move forward/backward a word
+- C-a/C-e : beginning and end of line — M-a/M-e: beginning and end of sentence
+- <DEL>/M-<DEL> : Kill the character/word immediately before the cursor.
+- C-d/M-d : Kill the the next character/word after the cursor
+- C-k/M-k:  Kill from the cursor position to end of line/sentence.
+- C-w : delete selected text.
+- M-w : copy selected text.
+- C-t : transpose or swap a character. 
+- M-t : transpose or swap a word.
+- C-/ : Undo. Same as C-_ or C-x u
+- C-u : repeat a command. For instance, C-u 8 C-f moves forward eight characters. 
+  e.g. C-u 8 # to insert ########.
+
+* Editing
+- Set the mark (C-<SPC>) at the beginning of the first line you want to prefix, move the cursor to last line to be prefixed, and type M-x string-insert-rectangle <RET>
+- C-x h : Select entire file
+- M-x tabify : Tabify selected text
+- M-x untabify : Untabify selected text
+- M-x toggle-truncate-lines 0 : Toggles line truncation
+- C-x (<key strokes> C-x ) : Defines a macro
+- C-x e : Execute macro
+- M-u : Convert following word to upper case
+- M-l : Convert following word to lower case
+- M-c : Capitalize following word
+- C-x C-l : Convert region to lower case
+- C-x C-u : Convert region to upper case
+
+* Searching
+- C-s <Text> : search the text, C-s to find next occurrence, C-r to find previous occurrence. <RETURN> or C-g to terminate.
+
+* Multiple Windows
+- C-x 2 : splits the screen into two windows horizontally. Both windows display this tutorial.  The editing cursor stays in the top window.
+- C-M-v : to scroll the bottom window. (If you do not have a real META key, type <ESC> C-v.)
+- C-x o ("o" for "other") : to move the cursor to the bottom window. 
+- C-x o again to move the cursor back to the top window. The cursor in the top window is just where it was before.
+- C-x 3 : splits the screen in two windows vertically.
+- C-x 4 C-f : splits the screen in two windows vertically and open specified file in next window.
+- M-x delete-window: deletes current window.
+- C-x 0 : deletes current window.
+- M-x delete-other-windows : deleted other windows except selected one.
+- M-x split-window-below : splits window horizontally.
+- M-x split-window-right : splits window vertically.
+- M-x next-window : next window in order. the ordering is determined by DFS of window tree.
+- M-x previous-window : previous window in order. these two command are good alternatives to C-x o.
+- C-x k : Kill current buffer.
+- M-x kill-matching-buffers : Kill buffers that match given regular expression.
+- M-x kill-some-buffers : Offer to kill each buffer one by one.
+- Other alternatives: kill-buffer, kill-this-buffer, kill-buffer-and-window
+
+* Multiple Frames 
+Emacs can also create multiple "frames".  A frame is what we call one collection of windows, together with its menus, scroll bars, echo
+area, etc.  On graphical displays, what Emacs calls a "frame" is what most other applications call a "window".  Multiple graphical frames
+can be shown on the screen at the same time.  On a text terminal, only one frame can be shown at a time.
+
+- M-x make-frame <Return> : See a new frame appear on your screen. You can do everything you did in the original frame in the new frame. There is nothing special about the first frame.
+- M-x delete-frame <Return> : This removes the selected frame.
+
+* Launch from command line
+- open -a Emacs <file name> : Launch in a new Emacs frame.
+** Launch in a running frame.
+   - M-x server-start : Run this in existing frame.
+   - emacsclient -n <file name> : Launch in a window that is in focus/has cursor. No way to launch in new window.
+
+-----
+* Emacs Lisp Mode Editing
+- ftp://ftp.gnu.org/old-gnu/Manuals/emacs-20.7/html_chapter/emacs_26.html
+** List And Sexp Commands
+- C-M-f : Move forward over a sexp (forward-sexp).
+- C-M-b : Move backward over a sexp (backward-sexp).
+- C-M-k : Kill sexp forward (kill-sexp).
+- C-M-DEL : Kill sexp backward (backward-kill-sexp).
+- C-M-u : Move up and backward in list structure (backward-up-list).
+- C-M-d : Move down and forward in list structure (down-list).
+- C-M-n : Move forward over a list (forward-list).
+- C-M-p : Move backward over a list (backward-list).
+- C-M-t : Transpose expressions (transpose-sexps).
+- C-M-@ : Put mark after following expression (mark-sexp).
+
+** Defun Commands
+- C-M-a : Move to beginning of current or preceding defun (beginning-of-defun).
+- C-M-e : Move to end of current or following defun (end-of-defun).
+- C-M-h : Put region around whole current or following defun (mark-defun).
+
+** Indentation Commands
+- TAB : Adjust indentation of current line.
+- M-( : Put parentheses around next sexp(s) (insert-parentheses).
+- M-) : Move past next close parenthesis and reindent (move-past-close-and-reindent).
+
+- C-j : Equivalent to RET followed by TAB (newline-and-indent).
+- C-M-q : Reindent all the lines within one list (indent-sexp).
+- C-u TAB : Shift an entire list rigidly sideways so that its first line is properly indented.
+- C-M-\ : Reindent all lines in the region (indent-region).
+
+** Comment Commands
+- M-; : Insert or align comment (indent-for-comment).
+- C-x ; : Set comment column (set-comment-column).
+- C-u - C-x ; : Kill comment on current line (kill-comment).
+- C-M-j : Like RET followed by inserting and aligning a comment (indent-new-comment-line).
+- M-x comment-region : Add or remove comment delimiters on all the lines in the region.

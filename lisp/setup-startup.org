@@ -1,0 +1,76 @@
+#+TITLE: Setup and Startup of Lisp Packages
+#+STARTUP: indent
+[[./setup-startup.html][HTML Export]]
+
+* SBCL
+[[http://lisp-lang.org/learn/getting-started/][URL]]
+
+Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler. In addition to the compiler and runtime system for ANSI Common Lisp, it provides an interactive environment including a debugger, a statistical profiler, a code coverage tool, and many other extensions.
+
+** Installation and Invocation
+#+BEGIN_SRC 
+brew install sbcl
+sbcl
+#+END_SRC
+
+* Quicklisp 
+[[https://www.quicklisp.org/beta/#installation][URL]]
+
+Quicklisp is a library manager for Common Lisp. It works with your existing Common Lisp implementation to download, install, and load any of over 1,500 libraries with a few simple commands.
+
+** Installation
+#+BEGIN_SRC sh
+curl -o /tmp/ql.lisp http://beta.quicklisp.org/quicklisp.lisp
+sbcl --no-sysinit --no-userinit --load /tmp/ql.lisp \
+       --eval '(quicklisp-quickstart:install :path "~/.quicklisp")' \
+       --quit
+#+END_SRC
+
+** Invocation
+#+BEGIN_SRC sh
+sbcl
+sbcl * (load "~/.quicklisp/setup.lisp") #this loads Quicklisp in SBCL
+#+END_SRC
+
+** Example
+#+BEGIN_SRC sh
+sbcl * (ql:quickload "vecto") #Quicklisp will automatically download any supporting software it needs to load the system. "vecto" is a system-name/library.
+#+END_SRC
+
+* Slime 
+[[https://common-lisp.net/project/slime/][URL]]
+
+SLIME is a Common Lisp IDE built on Emacs.
+
+** [[https://common-lisp.net/project/slime/doc/html/][Documentation]]
+** Installation
+#+BEGIN_SRC sh
+sbcl
+sbcl * (load "~/.quicklisp/setup.lisp") #this loads Quicklisp in SBCL
+sbcl * (ql:quickload :quicklisp-slime-helper)
+#+END_SRC
+** Invocation
+Type "M-x slime" in emacs.
+** Exit
+Type ',' in Slime buffer and then type 'sayoonara'
+
+* MIT Scheme
+** [[http://groups.csail.mit.edu/mac/probjects/scheme/][URL]]
+** Installation
+- [[https://jacksonisaac.wordpress.com/2014/03/25/installing-scheme-on-mac-os-x/][URL]]
+- [[http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.dmg][Download Link]]
+#+BEGIN_SRC sh
+ln -s /Applications/MIT\:GNU\ Scheme.app/Contents/Resources /usr/local/lib/mit-scheme-x86-64
+ln -s /usr/local/lib/mit-scheme-x86-64/mit-scheme /usr/local/bin/scheme
+ln -s /usr/local/lib/mit-scheme-x86-64/mit-scheme /usr/local/bin/mit-scheme
+#+END_SRC
+** Geiser REPL
+- [[https://www.nongnu.org/geiser/geiser_3.html#Starting-the-REPL][URL]]
+- Download the package directly as tar file.
+- move that tar file in .emacs.d
+- update .emacs with following
+#+BEGIN_SRC elisp
+(load-file "~/.emacs.d/geiser-0.10/elisp/geiser.el")
+#+END_SRC
+- M-x run-geiser RET mit or M-x run-mit
+** 
