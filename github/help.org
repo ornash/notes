@@ -1,0 +1,22 @@
+#+TITLE: Git/Github Help
+#+STARTUP: indent
+[[./help.html][HTML Export]]
+
+
+*Do not commit to github*
+
+* Git Repo Setup
+** New Repo Setup
+   #+BEGIN_SRC bash
+   #Download the repo using "git clone <https url>"
+
+   git config user.name "<github username for commits>"
+   #Uncheck "Block command line pushes that expose my email" option on "https://github.com/settings/emails" to make commits.
+   git config user.email "<github noreply email>"
+   #+END_SRC
+** Repo Setup Verification
+   #+BEGIN_SRC bash
+   git config user.name
+   git config user.email
+   git config commit.template
+   #+END_SRC
