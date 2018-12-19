@@ -1,0 +1,78 @@
+#+TITLE: SQL in Emacs Setup Help
+#+STARTUP: indent
+
+[[./setup-sql-in-emacs.html][HTML Export]]
+
+* Helpful Links
+- https://emacsredux.com/blog/2013/06/13/using-emacs-as-a-database-client/
+- https://tapoueh.org/blog/2017/12/setting-up-psql-the-postgresql-cli/
+- https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client
+
+* Setup
+- Download PostgreSQL for Mac OS.
+- Install it in /Applicatons/
+- Create a soft link to PSQL as follows
+#+BEGIN_SRC bash
+ln -sf /Applications/Postgres.app/Contents/Versions/9.5/bin/psql /usr/local/bin/psql
+#+END_SRC
+- Restart Emacs
+- Setup following in .emacs
+#+BEGIN_SRC elisp
+;;; default login params
+(setq sql-postgres-login-params
+      '((user :default "postgres")
+        (database :default "postgres")
+        (server :default "localhost")
+        (port :default 5432)))
+
+;;; hooks
+(add-hook 'sql-interactive-mode-hook
+          (lambda ()
+            (toggle-truncate-lines t)
+            (setq-local show-trailing-whitespace nil)
+            (auto-complete-mode t)))
+
+(add-hook 'sql-mode-hook
+          (lambda ()
+            (setq-local ac-ignore-case t)
+            (auto-complete-mode)))
+
+;;;; Server list
+(setq sql-connection-alist
+      '((my-db
+	 (sql-product 'postgres)
+	 (sql-port 8196)
+	 (sql-server "")
+	 (sql-user "")
+	 (sql-password "")
+	 (sql-database ""))))
+
+(defun connect-to-my-db ()
+  (interactive)
+  (my-sql-connect 'postgres 'my-db))
+
+(defun my-sql-connect (product connection)
+  ;; remember to set the sql-product, otherwise, it will fail for the first time
+  ;; you call the function
+  (setq sql-product product)
+  (sql-connect connection))
+#+END_SRC
+
+* Usage
+** Key Bindings
+- M-x sql-postgres : Tries to setup a connection to Postgres but doesn't ask for password and fails.
+- M-x connect-to-my-db : Connect to DB based on the configuration above.
+- C-c C-r : Same as "M-x sql-send-region". Select and execute SQL query in selected region.
+- C-c C-b : Same as "M-x sql-send-buffer". Execute all queries in buffer.
+- C-c C-c : sql-send-paragraph
+- C-c C-s :	sql-send-string
+- C-M-q   :	prog-indent-sexp
+- C-c C-l a : sql-list-all
+- C-c C-l t	: sql-list-table
+- C-c TAB	: sql-product-interactive
+
+** Commands
+#+BEGIN_SRC elisp
+;Don't truncate lines on results of a query.
+toggle-truncate-lines
+#+END_SRC

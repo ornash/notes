@@ -53,7 +53,7 @@ editor.
 - C-x h : Select entire file
 - M-x tabify : Tabify selected text
 - M-x untabify : Untabify selected text
-- M-x toggle-truncate-lines 0 : Toggles line truncation
+- M-x toggle-truncate-lines 0 : Toggles line truncation. wraps line at the ends of buffer.
 - C-x (<key strokes> C-x ) : Defines a macro
 - C-x e : Execute macro
 - M-u : Convert following word to upper case
@@ -120,7 +120,7 @@ can be shown on the screen at the same time.  On a text terminal, only one frame
 
 ** Indentation Commands
 - TAB : Adjust indentation of current line.
-- M-( : Put parentheses around next sexp(s) (insert-parentheses).
+- M-( : Put parentheses around next sexp(s) (insert-parentheses). Can also be used to put parentheses around a selected expression.
 - M-) : Move past next close parenthesis and reindent (move-past-close-and-reindent).
 
 - C-j : Equivalent to RET followed by TAB (newline-and-indent).

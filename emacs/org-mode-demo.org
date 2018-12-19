@@ -79,7 +79,21 @@ Text text text!
      - right: next state
 ** DONE Setup deadline. Press "C-c C-d" to bring up a calendar. Use "Shift-<arrow keys>" to navigate the calendar.
    DEADLINE: <2018-07-31 Tue>
-   
+* Date and Time                                                        :keys:
+https://orgmode.org/manual/Creating-timestamps.html
+- 'C-c C-d' Setup deadline. Press "C-c C-d" to bring up a calendar. Use "Shift-<arrow keys>" to navigate the calendar.
+- 'C-c .' Prompt for date and insert a corresponding timestamp. Modify the timestamp if cursor is on a timestamp. When
+  this command is used twice in succession, a *time range* is inserted.
+- 'C-c !' Like C-c ., but insert an inactive timestamp that will not cause an agenda entry.
+- 'Shift-<arrow keys>' Very useful to change the date after it is inserted. also useful to move date between
+  agend-non-agend modes.
+- 'C-c <' Insert a timestamp corresponding to wherever the cursor is in the Calendar.
+- 'C-c >' Access the Emacs calendar for the current date. If there is a timestamp in the current line, go to the
+  corresponding  date instead.
+- 'C-c C-o' Access the agenda for the date given by the timestamp or -range at point (see Weekly/daily agenda).
+- 'C-c C-y' Evaluate a time range by computing the difference between start and end. With a prefix argument, insert
+  result  after the time range (in a table: into the following column).
+
 * Key Bindings                                                         :keys:
 - 'M-RET' insert new header/item at the same level.
 - 'C-RET' insert new header after subtree.
