@@ -22,6 +22,7 @@ Text text text!
 - =#+OPTIONS: ^:nil= : Treat underscores as they are while exporting. Otherwise it subscripts the text followed by underscore.
 #+OPTIONS: ^:nil
 - Plenty of options are available.
+- [[https://orgmode.org/manual/Export-settings.html][Export settings]]
   
 * Markup
 *bold*, /italic/, =verbatim=, +strikethrough+
@@ -207,6 +208,7 @@ public class MyTest {
 - Supports export to various formats.
 - Use "C-c C-e" to export.
 - Press the key corresponding to your export format.
+- [[https://orgmode.org/manual/Export-settings.html][Export settings]]
 
 * Agenda							 :keys:notes:
 - Press 'C-c [' to enable agenda.

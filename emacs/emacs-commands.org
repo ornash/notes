@@ -61,6 +61,7 @@ editor.
 - M-c : Capitalize following word
 - C-x C-l : Convert region to lower case
 - C-x C-u : Convert region to upper case
+- M-/ : auto-complete based on words in current buffer/file.
 
 * Searching
 - C-s <Text> : search the text, C-s to find next occurrence, C-r to find previous occurrence. <RETURN> or C-g to terminate.
@@ -134,3 +135,4 @@ can be shown on the screen at the same time.  On a text terminal, only one frame
 - C-u - C-x ; : Kill comment on current line (kill-comment).
 - C-M-j : Like RET followed by inserting and aligning a comment (indent-new-comment-line).
 - M-x comment-region : Add or remove comment delimiters on all the lines in the region.
+
