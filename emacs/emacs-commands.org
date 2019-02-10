@@ -9,9 +9,12 @@ face to customize. Change the attributes and the sample text will reflect your s
 select\ Save for future sessions. Your changes will be saved to ~/.emacs and reloaded the next time you start the
 editor.
 
+* List and Install Packages
+- M-x list-packages
 * Commands
 - M-x : Type an emacs command.
 - M-! : execute shell command.
+- C-u M-!: execute shell command, but show output of command on the current buffer.
 - C-g : quit partially entered command. If you have typed an <ESC> by mistake, you can get rid of it with a C-g.
 - C-x 1 : One window (i.e., kill all other windows).
 - C-h m : bring up key-bindings for current buffer.
@@ -63,8 +66,11 @@ editor.
 - C-x C-u : Convert region to upper case
 - M-/ : auto-complete based on words in current buffer/file.
 
-* Searching
+* Search and Replace
 - C-s <Text> : search the text, C-s to find next occurrence, C-r to find previous occurrence. <RETURN> or C-g to terminate.
+- C-r <Text> : search the text backwards, C-s to find next occurrence, C-r to find previous occurrence. <RETURN> or C-g to terminate.
+- M-x replace-string : replace all occurences of match with replacement.
+- M-%  or M-x query-replace : search forward and replace each occurence of match with replacement one after another.
 
 * Multiple Windows
 - C-x 2 : splits the screen into two windows horizontally. Both windows display this tutorial.  The editing cursor stays in the top window.
@@ -93,13 +99,18 @@ can be shown on the screen at the same time.  On a text terminal, only one frame
 - M-x make-frame <Return> : See a new frame appear on your screen. You can do everything you did in the original frame in the new frame. There is nothing special about the first frame.
 - M-x delete-frame <Return> : This removes the selected frame.
 
+* Terminal
+- M-x term : Launch terminal, only one is supported. Use C-c instead of C-x to execute emacs commands from inside of the buffer.
+- M-x shell : Launch a shell in emacs buffer. Dont have to use C-c for executing emacs commands.
+- M-x eshell : Launch an emacs shell i.e. a shell with elisp support. You can use elisp commands on this shell along
+  with usual shell commands.
+
 * Launch from command line
 - open -a Emacs <file name> : Launch in a new Emacs frame.
 ** Launch in a running frame.
    - M-x server-start : Run this in existing frame.
    - emacsclient -n <file name> : Launch in a window that is in focus/has cursor. No way to launch in new window.
 
------
 * Emacs Lisp Mode Editing
 - ftp://ftp.gnu.org/old-gnu/Manuals/emacs-20.7/html_chapter/emacs_26.html
 ** List And Sexp Commands
@@ -135,4 +146,26 @@ can be shown on the screen at the same time.  On a text terminal, only one frame
 - C-u - C-x ; : Kill comment on current line (kill-comment).
 - C-M-j : Like RET followed by inserting and aligning a comment (indent-new-comment-line).
 - M-x comment-region : Add or remove comment delimiters on all the lines in the region.
-
+* Dired Mode
+- d : Mark for delete
+- x : To execute action
+- u : Unmark marked files
+- Shift u : Unmark all marked files
+- m : mark for action
+- + : Create directory
+- g : Refresh contents of Dired buffer
+- ! : Run shell command on file e.g. open HTML in Firefox
+- Shift c : Copy a file
+- s : Sort files.
+- * / : Mark all directories
+- t : Toggle Mark/Unmark all files or Toggle currently marked to unmarked and vice versa.
+- Shift A : Search using regular expression on the current or all selected files.
+- C-x C-q : Make Dired buffer editable to edit file and directory names like on a text editor.
+- C-c C-c : Save changes on the modified Dired buffer.
+* Managing Buffers
+- d : Mark for delete
+- x : To execute action
+- u : Unmark marked files
+- M-x clean-buffer-list : clean unused buffers.
+- M-x occur: Find buffer matching regular expression.
+- M-x multi-occur-in-matching-buffers : Grep regular expression in contents of matching buffers.
