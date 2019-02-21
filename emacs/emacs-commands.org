@@ -147,6 +147,13 @@ can be shown on the screen at the same time.  On a text terminal, only one frame
 - C-M-j : Like RET followed by inserting and aligning a comment (indent-new-comment-line).
 - M-x comment-region : Add or remove comment delimiters on all the lines in the region.
 * Dired Mode
+Enter this mode after pressing <RETURN> on a directory after "C-x f"
+- ^ : Go to parent directory
+- f : Visit the file/directory on the cursor.
+- e : Like f.
+- o : Like f, but uses another window to display the file's buffer. Move cursor to new window.
+- C-o : Like o but keeps cursor on current window.
+- v : Like f, but read-only buffer.
 - d : Mark for delete
 - x : To execute action
 - u : Unmark marked files
@@ -169,3 +176,7 @@ can be shown on the screen at the same time.  On a text terminal, only one frame
 - M-x clean-buffer-list : clean unused buffers.
 - M-x occur: Find buffer matching regular expression.
 - M-x multi-occur-in-matching-buffers : Grep regular expression in contents of matching buffers.
+* Magit
+- M-x magit-status : show git repo status, I have bind it to "C-x g"
+- ? : Brings up help popup
+- 

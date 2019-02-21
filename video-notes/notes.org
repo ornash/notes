@@ -1,0 +1,26 @@
+#+TITLE: Notes On Tech Videos I Have watched
+#+STARTUP: indent
+#+OPTIONS: ^:nil
+[[./notes.html][HTML Export]]
+
+
+* Read a Paper
+** End To End Argument In System Design			      :system_design:
+   - https://www.youtube.com/watch?v=dE699lHDW7I&t=1s
+   - https://dl.acm.org/citation.cfm?doid=357401.357402
+   - Presents a design principle that guides placement of functions among modules of a distributed computer system.
+   - Functions placed at lower level of system may be of little value compared to the cost of providing them.
+   - Functions should be placed at ends of the system.
+   - e.g. for a file transfer system, ensuring correctness in each module vs ensuring correctness at the ends by taking
+    hash and comparing them. With the former there is a chance of error even if individual modules guanrantee 99.9%
+    correctness; whereas, in the later there is no chance of error.
+** Creteria For Decomposing Systems In Modules :system_design:software_engineering:
+   - https://www.youtube.com/watch?v=NF5tRQb0Dpc
+   - https://dl.acm.org/citation.cfm?doid=361598.361623
+   - Follow data abstraction and information hiding principle in design.
+   - Decomposition of a system into modules based on flow chart of implementation for application is always an incorrect
+     choice.
+   - Decomposition should be based on the design decisions that are likely to change. Each module is then designed to
+     hide such a design decision from others.
+   - Since design decisions transcend the time of execution, modules will not correspond to steps in processing.
+

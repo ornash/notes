@@ -10,7 +10,7 @@ Text text text!
 ******** level 8
 ********* level 9
 ********** level 10
-   
+
 * Metadata
 - The following text changes the title of exported file.
 - =#+TITLE: Intro to Org-mode=
@@ -25,7 +25,8 @@ Text text text!
 - [[https://orgmode.org/manual/Export-settings.html][Export settings]]
   
 * Markup
-*bold*, /italic/, =verbatim=, +strikethrough+
+- *bold*, /italic/, =verbatim=, +strikethrough+
+- =*bold*=, =/italic/=, ==verbatim==, =+strikethrough+=
 
 - bulleted
 - list
