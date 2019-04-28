@@ -1,0 +1,22 @@
+#+TITLE: Usage of Maths in Computer Science for Better Design
+#+STARTUP: indent
+[[./linear-algebra.html][HTML Export]] 
+
+* Examples
+** Representation of Rectangle
+- Using knowledge about points and vector to define a compact definition of rectangle as
+  - an origin point
+  - 1 horizontal scalar
+  - 1 vertical scalar
+- vs using four points.
+** Using ammortized cost instead of average or worst case complexity
+** Knowledge of permutation/combination to define complexity
+** Probability
+** Total Big O of entire system
+** Knowledge of Set theory
+** Speed of light to define time it takes for operation in various computers in data center
+** 
+
+
+
+

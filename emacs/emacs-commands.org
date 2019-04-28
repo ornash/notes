@@ -180,3 +180,4 @@ Enter this mode after pressing <RETURN> on a directory after "C-x f"
 - M-x magit-status : show git repo status, I have bind it to "C-x g"
 - ? : Brings up help popup
 - 
+  

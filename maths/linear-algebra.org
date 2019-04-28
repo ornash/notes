@@ -1,0 +1,20 @@
+#+TITLE: Linear Algebra
+#+STARTUP: indent
+[[./linear-algebra.html][HTML Export]] 
+
+
+* Questions And Doubts
+  - Note taken on [2019-01-19 Sat 23:31]
+  - Note taken on [2019-01-19 Sat 23:31]
+- Why use matrix multiplication? What is its meaning?
+  - To solve linear equations.
+- What is a linear equation?
+  - 5x + 6y = 10
+  - An equation that represents a line. 
+  - All the points on the line are solutions to that linear equation.
+  - Line can be drawn easily by substituing x=0 and y=0 to get two points.
+  - It is not a polynomial equation. x and y are always in numerator and there is a constant involved.
+- What is a vector?
+
+
+

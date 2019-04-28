@@ -4,7 +4,7 @@
 [[./notes.html][HTML Export]]
 
 
-* Read a Paper
+* Read a Paper Series
 ** End To End Argument In System Design			      :system_design:
    - https://www.youtube.com/watch?v=dE699lHDW7I&t=1s
    - https://dl.acm.org/citation.cfm?doid=357401.357402
@@ -23,4 +23,79 @@
    - Decomposition should be based on the design decisions that are likely to change. Each module is then designed to
      hide such a design decision from others.
    - Since design decisions transcend the time of execution, modules will not correspond to steps in processing.
-
+* The Power Of Epidemics
+** Definition of Scalable
+- If we increase the resources in a system it results in increased performance proportional to the resources added.
+- If adding resources to improve reliability through redundancy it should not adversely impact the performance.
+** Scalability of Real Systems
+- All the costs involed in running and maintaining have to << O(n)
+- With good distribution of efforts resource usage of individual components should shrink.
+** Systems That Dont Scale
+*** Many algorithms run some form of agreement under the hoods
+- in usual 2PC style, network load of agreement goes up O(n)
+- memory and CPU load on coordinator also goes up O(n)
+- you can call 2PC the unavailability protocol.
+- it is probabilistically guranteed to block especially when things dont go as planned
+- you build systems for a perfect world, things dont go as planned.
+- but shit happens, and it happens continuously in real life.
+- you can control this when systems are small but can't when systems grow.
+*** Failure and recovery rates go up O(n)
+*** They dont deal very well with continuous change
+- Never expect your system to be stable
+- Assume that nodes are continuously leaving, joining, failing
+- Assume that perturbations and disruptions happen frequently
+** Issues in Reliable Multicast Protocol
+- even if just 1 node sleeps (not even go down), the throughput goes down rapidly with the number of nodes in the system.
+** Control
+- Control requires determinism to be effective
+- We apply a top-down approach in controlling
+- which results in increased complexity
+- Only small isolated systems can be built out of tricks
+- If system grows, you lose control
+- We try to build systems that attempt to beat life
+- To a certain extent, we succeed
+** Real Life Is Not A State Machine
+- it is not deterministic
+- it is probabilistic
+** So, let go off above illusion
+** Is there, hope?
+*** Probabilistic approaches
+- Relax guarantees for scalable operation
+*** Adaptive approaches
+- Extensible, self-confugurable, self-tunable systems.
+*** Formal verification approaches
+- Assuring the integrity of decentralized systems.
+** Robustnesss In Biological Systems
+- Redundancy, Feedback, Modularity, Loose Coupling, Purging, Apoptosis, Spatial Compartmentalization, Distributed
+  Processing, Extended Phenotype.
+- Therefore, learn from real life.
+** Historical context
+- Gossips and Telephones paper, 1972 Discrete Mathematics journal
+- Epidemics and gossip can be used intechangebly
+** Robust Distributed Systems Based On Epidemics
+- Has rigorous mathematical underpinings
+- Probabilistic model
+- Asychronous communication pattern
+- Autonomous and decentralized actions
+- Robust with respect to message loss and node failure
+- Very tight control over resource usage
+** Basic intution
+- Periodically a participant will choose a random subset of destinations and will exchange its state with them.
+- If a participant receives a remote state, it performs a merge operation with its local state.
+- It a node's local state has not changed for a certain period it will stop communicating.
+** Epidemic layering
+*** Epidemic algorithms
+- How to select the communicating partners
+- When to terminate
+*** Epidemic protocols
+- What to do when a message is received
+- Anti-entropy, rumor-mongering
+** Spread of a simple epidemic
+*** Assumptions
+- Assume a fixed population of size n
+- For now, assume homogeneous spreading
+  - anyone can infect anyone else with equal probability
+- Assume k members already infected
+- Assume infection occurs in rounds
+** Werner's Page
+- internal.amazon.com/~wener/epidemics
