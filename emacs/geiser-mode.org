@@ -3,7 +3,8 @@
 [[./geiser-mode.html][HTML Export]]
 
 * Installation
-- [[file:setup-startup.org::*Geiser%20REPL][URL]]
+- [[file:~/home/personal/notes/lisp/setup-startup.org::*Geiser%20REPL][URL]]
+
 * Startup
 - M-x run-geiser RET mit or M-x run-mit : Start geiser REPL
 - C-c C-s : Bind buffer to running geiser REPL. Have to do with every buffer.
