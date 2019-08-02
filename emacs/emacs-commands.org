@@ -1,7 +1,7 @@
 #+TITLE: Emacs Commands and Key Bindings Help
 #+STARTUP: indent
 [[./emacs-commands.html][HTML Export]]
-
+[[https://github.com/ornash/notes/blob/master/emacs/emacs-commands.org][Github Page]]
 
 * Emacs Setup and Commands
 To change the background color and other attributes, use the command\ M-x customize-face, and specify\ default\ as the

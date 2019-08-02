@@ -1,6 +1,7 @@
 #+TITLE: Geiser Mode Help
 #+STARTUP: indent
 [[./geiser-mode.html][HTML Export]]
+[[https://github.com/ornash/notes/blob/master/emacs/geiser-mode.org][Github Page]]
 
 * Installation
 - [[file:~/home/personal/notes/lisp/setup-startup.org::*Geiser%20REPL][URL]]

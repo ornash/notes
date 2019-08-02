@@ -1,3 +1,9 @@
+#+TITLE: Org Mode Demo
+#+STARTUP: indent
+[[./org-mode-demo.html][HTML Export]]
+[[https://github.com/ornash/notes/blob/master/emacs/org-mode-demo.org][Github Page]]
+
+
 * Intro
 Text text text!
 ** more items

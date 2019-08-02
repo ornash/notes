@@ -2,6 +2,7 @@
 #+STARTUP: indent
 
 [[./setup-sql-in-emacs.html][HTML Export]]
+[[https://github.com/ornash/notes/blob/master/emacs/setup-sql-in-emacs.org][Github Page]]
 
 * Helpful Links
 - https://emacsredux.com/blog/2013/06/13/using-emacs-as-a-database-client/
