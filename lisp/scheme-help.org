@@ -1,0 +1,18 @@
+#+TITLE: Scheme Help
+#+STARTUP: indent
+[[./scheme-help.html][HTML Export]]
+[[https://github.com/ornash/notes/blob/master/lisp/scheme-help.org][Github Page]]
+
+* Wiki
+- [[https://groups.csail.mit.edu/mac/ftpdir/scheme-7.4/doc-html/scheme_toc.html][URL]]
+
+* Useful procedures
+- (pp <procedure name>) - pretty print definition of a procedure
+- (newline)
+- (display <arg>)
+- (runtime) - Current time
+- 'nil - null value
+- (null? <arg> - Check if arg is null)
+- (boolean? <arg>) (string=? <arg>)
+- (not <arg>) - complement
+* 

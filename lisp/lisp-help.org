@@ -1,6 +1,8 @@
 #+TITLE: Lisp Help
 #+STARTUP: indent
 [[./lisp-help.html][HTML Export]]
+[[https://github.com/ornash/notes/blob/master/lisp/lisp-help.org][Github Page]]
+
 
 * MOD and REM
 http://clhs.lisp.se/Body/f_mod_r.htm

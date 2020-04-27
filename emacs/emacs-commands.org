@@ -26,6 +26,7 @@ editor.
 - Put the mode name in the first nonblank line, preceded and followed by ‘-*-’:
   https://www.gnu.org/software/emacs/manual/html_node/emacs/Choosing-Modes.html
   e.g. ; -*-Text-*-
+- C-h info : Open info.
 
 * Font/View
 - C-x C-+ / C-x C--: ‘text-scale-adjust’ increase or decrease font size in buffer. C-/C+ to continue doing that.
@@ -65,6 +66,7 @@ editor.
 - C-x C-l : Convert region to lower case
 - C-x C-u : Convert region to upper case
 - M-/ : auto-complete based on words in current buffer/file.
+- M-$ : Spell check.
 
 * Search and Replace
 - C-s <Text> : search the text, C-s to find next occurrence, C-r to find previous occurrence. <RETURN> or C-g to terminate.
@@ -113,11 +115,13 @@ can be shown on the screen at the same time.  On a text terminal, only one frame
 
 * Emacs Lisp Mode Editing
 - ftp://ftp.gnu.org/old-gnu/Manuals/emacs-20.7/html_chapter/emacs_26.html
+** Minor modes
+- M-x show-paren-mode : Highlights matching parenthesis
 ** List And Sexp Commands
 - C-M-f : Move forward over a sexp (forward-sexp).
 - C-M-b : Move backward over a sexp (backward-sexp).
 - C-M-k : Kill sexp forward (kill-sexp).
-- C-M-DEL : Kill sexp backward (backward-kill-sexp).
+- C-M-DEL : Kill sexp backward (backward-kill-sexp). Use Fn-Backspace for DEL on Mac.
 - C-M-u : Move up and backward in list structure (backward-up-list).
 - C-M-d : Move down and forward in list structure (down-list).
 - C-M-n : Move forward over a list (forward-list).
