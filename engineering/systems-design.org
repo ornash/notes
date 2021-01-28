@@ -1,0 +1,124 @@
+#+TITLE: Notes on Important Facts/Properties/Laws/Theorems in System Design
+#+STARTUP: indent
+[[./systems.design.html][HTML Export]]
+[[https://github.com/ornash/notes/blob/master/engineering/systems-design.org][Github Page]]
+
+* Parallelism
+  - http://supertech.lcs.mit.edu/cilk/
+
+* Little's Law
+  - https://en.wikipedia.org/wiki/Little%27s_law
+  - https://twitter.com/tacertain/status/1166039929354240002
+  - https://brooker.co.za/blog/2018/06/20/littles-law.html
+  The law says that the mean concurrency in the system (𝐿) is equal to the mean rate at which requests arrive (λ)
+  multiplied by the mean time that each request spends in the system (𝑊): 𝐿 = λ𝑊
+  
+  Concurrency is a useful measure of capacity in real systems, because it directly measures consumption of resources
+  like threads, memory, connections, file handles and anything else that's numerically limited. It also provides an
+  indirect way to think about *contention*: *if the concurrency in a system is high, then it's likely that contention is
+  also high.*
+
+  The way Little's Law is written, each of the terms are long-term averages, and λ and 𝑊 are independent. In the real
+  world, distributed systems don't tend to actually behave this nicely. Request time (𝑊) tends to increase as
+  concurrency (𝐿) increases.
+
+  Amdahl's law is also wildly optimistic: most real-world systems don't see throughput level out under contention, but
+  rather see throughput drop as contention rises beyond some limit. The universal scalability law captures one model of
+  this behavior. The fundamental reason for this is that contention itself has a cost. In both cases 𝑊 is a function of
+  𝐿.
+
+  Arrival rate (λ) also depends on request time (𝑊), and typically in a non-linear way. There are three ways to see this
+  relationship: 
+  - Arrival rate drops as request time increases (λ ∝ 1/𝑊). In this model there is a finite number of clients and each
+    has its own finite concurrency (or, in the simplest world is calling serially in a loop).
+  - Arrival rate does not depend on latency. If clients don't change their behavior based on how long requests take, or
+    on requests failing, then there's no relationship. The widely-used Poisson process client model behaves this way.
+  - Arrival rate increases as request time increases (λ ∝ 𝑊). One cause of this is timeout and retry. Other kinds of
+    stateful client behavior can also kick in here. For example, clients may interpret long latencies as errors that
+    don't only need to be retried, but can trigger entire call chains to be retried.
+  The combination of these effects tends to be that the dynamic behavior of distributed systems has scary
+  cliffs. Throttling, admission control, back pressure, backoff and other mechanisms can play a big role in avoiding
+  these cliffs, but they still exist. 
+
+  Little's law's use of long-term means also tends to obscure the fact that real-world statistical processes are
+  frequently non-stationary: they include trends, cycles, spikes and seasonality which are not well-modeled as a single
+  stationary time series. Non-stationary behavior can affect 𝑊, but is most noticeable in the arrival rate λ. This leads
+  to significant spikes of traffic, and pushes the distribution of arrival time away from the Poisson process ideal.
+
+  Depending on how you define long term mean, these cyclic changes in λ can either show up in the distribution of λ as
+  high percentiles, or show up in λ being non-stationary. Depending on the data and the size of the spikes it's still
+  possible to get useful results out of Little's law, but they will be less precise and potentially more misleading.
+
+  Somewhat inspired by Little's law, we can build up a difference equation that captures more of real-world behavior:
+  W_n+1 = 𝑊(L_n, λ_n, t)
+  λ_n+1 = λ(L_n, W_n, t)
+  L_n+1 = λ_n+1 𝑊_n+1
+  Breaking the behavior of the system down into time steps provides a way to tell a story about the way the system
+  behaves in the next time step, and how the long-term behavior of the system emerges. It's also useful for building
+  simple simulations of the dynamics of systems. Telling stories about our systems, for all its potential imprecision,
+  is a powerful way to build and communicate intuition.
+  Each step in the story evolves by understanding the relationship between latency, concurrency and arrival rate. The
+  start of the story is almost always some triggering event that increases latency or arrival rate, and the end is some
+  action or change that breaks the cycle. Each step in the story offers an opportunity to identify something to make the
+  system more robust. Can we reduce the increase in 𝑊 when λ increases? Can we reduce the increase in λ when 𝑊 exceeds a
+  certain bound? Can we break the cycle without manual action?
+  The typical resiliency tools, like backoff, backpressure and throttling, are all answers to these types of questions,
+  but are far from the full set of answers. Telling the stories allows us to look for more answers.
+
+* Amdahl's Law
+  - https://twitter.com/tacertain/status/1166039929354240002
+  - https://en.wikipedia.org/wiki/Amdahl%27s_law
+
+* Universal Scalability Law
+  - https://twitter.com/tacertain/status/1166039929354240002
+  - http://www.perfdynamics.com/Manifesto/USLscalability.html
+
+
+* Generic Design Principles
+** High Level
+- *Elements of a good system*: primitives, means of combination and means of abstraction.
+  - A good system defines a *language* people use to communicate with the system and with each other.
+- Have you created *abstraction barriers*? Do you need them?
+- Do you need a *name or store* for your data?
+- Should *storage and computation* be together or separate?
+- What are the *constructors, selectors, and mutators*? or CRUD or PUT/GET/DELETE/POST.
+- Should the application use *end-to-end* or *component based* philosophy?
+- Don't design using a flowchart but use *information hiding* as a principle.
+- Two main criteria of any system design:
+  1. We want to be able to make *changes* to system in future.
+  2. We want to be able to *prove them correct*.
+- Design for *change*.
+  - Ask, what are the assumptions? Then reason about what *assumptions* are going to change.
+  - Ask, what is the *rate of change* of various components?
+- Use *wishful thinking* as a principle for designing abstractions.
+- Dont just design good abstractions also design good *data structures* to support those abstractions.
+- Ask, what *kind of application* are you designing?
+  - simulation, constraint system, database, real-time system, batch processing, stream processing etc.
+
+** Low Level
+- *Elements of a good system*: primitives, means of combination and means of abstraction.
+  - A good system defines a *language* people use to communicate with the system and with each other.
+- There is no difference between *code and data*. Don't treat them differently.
+- Give it a *name*.
+- *Decompose(take derivative)* system down to its smallest useful parts and then build up.
+- Have you created *abstraction barriers*? Do you need them?
+- Don't design using a flowchart but use *information hiding* as a principle.
+- Use *wishful thinking* as a principle for designing abstractions.
+- Do you need a *name or store* for your value?
+- Mutation itself isn't bad, it is better design choice sometimes. It is the system design choices is forces you to take
+  realted to time and space complexity, readability, maintainability, abstraction etc. result in a bad system.
+- Similarly immutability isn't always good, it too can lead to bad design in some cases. e.g. try to implement Queue
+  with immutable data structures.
+- Compound data is used to model real-world objects that have several aspects. We achieve data abstraction over these
+  compound data objects by using *constructors, selectors, and mutators*.
+- Mutators introduce *state* into the objects which then become dependent on *time*. Therefore, mutate only if
+  absolultely necessary.
+- Along with asking whether you need a *name or a store* for value, you can also ask does the value change over time and
+  if so, how. This can guide your mutable vs immutable design decision.
+- Design at an abstract level without notion of actual time, introduce actual time when absolutely necessary.
+- Use *connecting procedures* if necessary to prevent two ore more objects from knowing about each other.
+- Dont just design good abstractions also design good *data structures* to support those abstractions.
+- Ask, what *kind of application* are you designing?
+  - simulation, constraint system, database, real-time system, batch processing, stream processing etc.
+
+

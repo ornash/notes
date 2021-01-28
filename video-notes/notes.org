@@ -99,3 +99,85 @@
 - Assume infection occurs in rounds
 ** Werner's Page
 - internal.amazon.com/~wener/epidemics
+* How to Speak by Patrick Winston
+- https://www.youtube.com/watch?v=Unzc731iCUY
+- Soldiers dont go to war without weapons, you shouldn't go out in society without knowing how to speak.
+- Qualilty of communication = f(Knowledge of what you know, Practice with your knowledge, Talent) in that order, talent
+  matters the least. e.g. Olympic gymnast vs the professor in skiiing.
+- Understand that people have only one langugage processor.
+** How to start a talk?
+*** not a joke, at least not at the beginning.
+*** start with a promise. tell them what they will learn to get them excited.
+*** e.g. at the end of this 60 minutes you will know how to communicate.
+** Sample/Heuristics
+*** cycle on the subject. multiple time if need be.
+*** build a fense around your talk's idea so that it cant be confused with other ideas in the listener's mind.
+*** use verbal punctuation.
+*** tell stories and include examples.
+*** ask questions. choose question carefully, not too hard, not too easy.
+** Time and Place
+*** 11 AM
+*** Well lit palce.
+*** cased. survery your speaking place before the talk.
+*** should be well populated. at least more than half-full.
+** Tools
+*** There should be a white board. Graphic quality.
+*** Speed. Slides are too fast. Board is not. Listener can cycle back.
+*** Target. Use your hands. Point, wave, write etc.
+*** Props
+**** playwriters do it very well.
+**** professor. walter lewin. for the love of physics.
+**** people get involved with props and anticipate whats going to happen. even for something as simple as writing.
+**** avoid slides as much as possible. they expose you to ideas not teach you.
+**** Slides if you have to
+***** least number of words. dont let them read.
+***** keep images simple.
+***** remove all clutter. background, title
+**** dont use pointers. laser or stick or anything else.
+** Information Talk
+*** Promise
+*** Inspire
+**** you should be passionate
+*** How to think
+**** tell stories that audience should know
+**** tell them about questions they should ask
+**** tell them mecahnisms for analysing those stories
+**** tell them ways of putting stories together
+**** tell them how to evaluate how reliable the story is
+** Persuading
+*** understand the nature of human intelligence
+**** we are symbolic creatures
+**** we can string together things
+**** we can tell stories about it
+*** Job talks, job interviews, technical talk.
+**** your vision. (within first 5 mins)
+**** you should have done something. (within first 5 mins)
+**** the series of steps to achieve your vision
+**** your contributions.
+*** getting famous
+**** you want people to remember you and your ideas
+**** why?
+***** should you care about getting famous?
+****** it isn't fun getting ignored
+****** you dont want your ideas to go unnoticed. like you wouldn't want your children to go out in the world in rags.
+**** how? (star method)
+***** have a symbol (arch)
+***** have a slogan (one shot learning)
+***** surprise
+***** salient idea. doesnt mean important but an idea that sticks out.
+***** tell a story
+** How to stop?
+*** final slide
+**** dont list collaborators. if you do, make sure your contributions are highlighted. put your collaborators on the
+first slide if you want to recognize them.
+**** dont use the "questions?" slide. it stays there for 20 mins. you wasted real estate there which could have been
+about you or the topic.
+**** dont use the URL slide. has anyone noted it down ever? there are other ways to do it.
+**** dont use "the end" slide. it is waste of time and real estate. it could have been about you or the topic.
+**** dont use conclusion slide.
+**** your final slide should be "Contrinbutions". Tell them what you have done.
+*** final words
+**** tell a joke. if it ends well, all is well.
+**** dont say thank you.
+**** there are other things you can do.
+**** salute the audience. make it about them.
