@@ -1,0 +1,115 @@
+#+TITLE: Leadership Principles
+#+STARTUP: indent
+#+OPTIONS: ^:nil
+[[./leadership-principles.html][HTML Export]]
+
+In order of importance based on Jeff Bezos' talks
+
+* Are Right A Lot
+** Video 1
+  - https://broadcast.amazon.com/videos/24829
+  - This is the most important priciple to follow as you get more senior.
+  - Most of the time you need to get lucky to be right a lot.
+*** People who are right a lot:
+**** change their mind a lot
+     - because they get more data
+     - or they have analyzed situation better
+**** dont get trapped in self-consistency
+     - if things change, change their mind
+**** admit they are wrong quickly
+     - best way to end debate, just say am wrong
+*** How to improve odds of being right a lot
+    - Listen more
+    - use arithmentic if data is available
+* Invent And Simplify
+** Video 1
+   - https://broadcast.amazon.com/videos/4186-Zappos-Welcome-Video
+   - Listen to customers and invent on their behalf
+   - You can get invent yourself out of any box
+   - Better to cannibalize your own business stream by offering a new service/product before anyone does it to you.
+* Obsess Over Customers
+** Video 1
+   - https://broadcast.amazon.com/videos/4186-Zappos-Welcome-Video
+   - Observer competitors but obsess over customers
+   - It will cover a lot fo errors
+** Video 2
+   - https://broadcast.amazon.com/videos/1231-Customer-Experience-Jeff-Bezos
+   - Keep it simple
+   - Everything should have low cognition load
+   - Make it clear
+   - Invent, customers are not going to invent for themselves
+** Video 3
+   - https://broadcast.amazon.com/videos/14791
+   - Customers are fickle, they will go wherever they get a better price.
+   - But happy customers are also best evangelists
+   - Customer expectations rise so there is always an opportunity to screw up
+** Video 4
+  - https://broadcast.amazon.com/videos/2950
+*** What do customers want?
+**** Selection
+     - if cant find it, you cant buy it
+     - may be available from price
+**** Price
+     - be frugal and smart
+     - every percent point of efficiency count in fullfilment center
+**** Availabilty
+     - How fast is it available?
+     - Pickup in store?
+**** Convenience
+     - No need to find parking
+     - get in, get out
+     - one click purchase
+**** Information
+     - reviews
+     - look inside book
+     - recommendation
+**** Discovery
+     - personalization
+     - e-commerce search 
+* Think Long Term
+** Video 1
+   - https://broadcast.amazon.com/videos/4186-Zappos-Welcome-Video
+   - If you want to invent, think long term.
+   - Think x years in future and start working in that direction.
+   - Some things might take years to materialize
+   - be willing to be misunderstood
+   - analyze and if you are wrong fix it.
+** Video 2
+   - https://broadcast.amazon.com/videos/79301
+   - Quarterly results are outcome of something done years/months ago.
+* Hiring Bar
+** Video 1
+   - https://broadcast.amazon.com/videos/14791
+   - Never hire low, however fast you are moving, always think long term
+   - Never put bodies in place because eventually they will hire more bodies
+** Video 2
+   - https://broadcast.amazon.com/videos/79301
+   - One person cannot do everything so hire smart
+* Social Cohesion vs Truth Seeking
+** Video 1
+   - https://broadcast.amazon.com/videos/21523
+   - Seek the truth, humans have evolved to seek social cohesion.
+* Think Big - Durable In Time
+** Video 1
+   - https://broadcast.amazon.com/videos/10118
+   - Customers will never say they would accept delayed products delivery.
+   - So investing in fast delivery is a strategy that is durable in time.
+* Be Frugal
+** Video 1
+  - https://broadcast.amazon.com/videos/10115
+  - Be frugal where you need to be
+*** Know where to spend
+    - Things that help you improve
+    - Things that improve quality
+    - Things that improve speed.
+
+
+* Leadership Principles According To Me
+** Clarity of thought
+   - If you are clear on what needs to happen, people will be willing to follow you.
+** Followup
+   - Don't leave anything unattended, always follow up. It builds trust.
+** Be ahead in learning new technologies or at least their impact
+
+
+   

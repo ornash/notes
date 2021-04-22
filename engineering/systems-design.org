@@ -74,51 +74,279 @@
   - http://www.perfdynamics.com/Manifesto/USLscalability.html
 
 
-* Generic Design Principles
+* Distributed Computing Manifesto
+** Goal is to decouple data model and application business logic.
+** Problem Statement:
+  - Amazon
+  - Catalog (100s of millions), Customers(100s of millions), Vendors(millions)
+    - Permanent data and live data
+    - Needs high availability
+    - Data has relationships
+  - Orders, Shipments
+    - Transient data
+    - Historical data
+** Service Based Model
+- Two-tier to three-tier model with client, application, data model.
+- Client-Application interface can change independently of application-data interface.
+*** Implementations
+**** Synchronous
+- ServiceA <---> ServiceB
+- immediate response required.
+**** Asynchronous
+- ServiceA ---> ServiceB, ServiceB ---> ServiceA
+- immediate response not required
+- pass/forward message from service to service
+***** Callback
+- time between request-reply is short
+- issues - requestor might not be available
+***** Polling
+- longer delay is acceptable
+- issue: polling wastes compute and storage resources
+** Workflow Based Model
+  - Data travels from process to process.
+  - Ideal for transient data and well-defined state transitions.
+  - All state is requried in data/message for decision making.
+*** Autonomous
+- all intelligence is in the nodes to make decisions.
+- ideal if workflow is not going to change much.
+- need well defined symatics for success/failure scenarios.
+*** Orchestrated
+- Orchestrator service and some microservices.
+- Allows flexbililty in changing business logic of workflow.
+- Success and failure scenarios can be handled easily
+**** Drawbacks
+- Not good for persistent data
+- Not good for data that doesnt change predictably
+- Need ability to view state of overall system. Solution: put state in some DB.
+- Recording, propogating and reacting to source data change is difficult. Solution: Need Pub-Sub system.
+** Data Flow Categories
+1. Data well suited for sequential processing in queues.
+2. Data that belongs to domain models, requires persistence and wide availability.
+3. Data that is transient, requried locally, operate upon in aggregates i.e. it shows properties of both queues and
+   database tables.
+
+* Cracking_the_Monoliths
+** Intro
+- exec-summary
+- problem definition
+- vision
+- attacking the disease. i.e. addressing the root cause.
+- attacking the symptoms i.e. addressing short term pains for breathing room.
+** Exec Summary
+- Design time monolith vs run-time monolith
+- monoliths make it difficult to leverage software platform for new business opportunities
+- design time monolith breakup - migrate to a codebase of modules with well-defined and understood dependencies
+- run-time monolith breakup - services based production environment
+- faster dev builds, structured interaction between components, better isolation of compoents
+** Problem - The monoliths
+- pieces of codebase can’t be used independently
+- although codebase is broken apart physically into modules, the dependencies between modules are not well organized,
+  making it effectively impossible to use only the modules your application really requires. This the design time
+  monolith.
+- A run time monolith is an executable that is too big, and does too many things.
+- Fragile run-time. Huge blast radius.
+*** Symptoms
+- executables are hard to deploy
+- problems linking and debugging due to lack of memory
+- People have to build all the source code
+- shared ownership of code. shared ownership is no ownership
+- share functionality at levels too close to the physical e.g. database schema or code level.
+- Branching in the version control system is cumbersome.
+- Changes take a long time to propagate to branches
+- difficult to resolve dependencies between libraries
+*** Costs
+- lot of time is required to change line of code and rebuild executable
+- executables too big to compile and link
+- difficult to integrate and expose internal services to external parties on the internet
+** Vision
+- Large programs are bad. So use small programs.
+- It’s the little decisions that count.
+- Think about how you can break the system into services that run in separate executables that can fail and version
+  independently.
+- Change in our corporate behaviour.
+*** Brazil
+- Each library has a well defined owner (usually a group).
+- Dependencies between libraries are explicit and enforced.
+- Libraries can be versioned and deployed independently.
+- Libraries have hierarchical structure.
+- Libraries are shared via object code, not source code.
+*** Service Based Architecture
+- Break up the run time monoliths into bite sized chunks. Implement the chunks as services that are accessed via some
+  kind of middleware.
+- Monoliths become simple applications that call services to do their dirty work.
+- Services are typically used by many applications; they are also used by each other.
+- Services need to be as independent of one another as possible.
+- Services communicate via middleware.
+** Attacking the disease
+** Attacking the symptoms
+* Criteria for Choosing a Database
+
+* Generic System Design Principles
 ** High Level
 - *Elements of a good system*: primitives, means of combination and means of abstraction.
   - A good system defines a *language* people use to communicate with the system and with each other.
 - Have you created *abstraction barriers*? Do you need them?
+- Don't design using a flowchart but use *information hiding* as a principle.
+- Dont just design good abstractions also design good *data structures* to support those abstractions.
+- Use *wishful thinking* as a principle for designing abstractions.
 - Do you need a *name or store* for your data?
 - Should *storage and computation* be together or separate?
 - What are the *constructors, selectors, and mutators*? or CRUD or PUT/GET/DELETE/POST.
 - Should the application use *end-to-end* or *component based* philosophy?
-- Don't design using a flowchart but use *information hiding* as a principle.
 - Two main criteria of any system design:
   1. We want to be able to make *changes* to system in future.
   2. We want to be able to *prove them correct*.
 - Design for *change*.
   - Ask, what are the assumptions? Then reason about what *assumptions* are going to change.
   - Ask, what is the *rate of change* of various components?
-- Use *wishful thinking* as a principle for designing abstractions.
-- Dont just design good abstractions also design good *data structures* to support those abstractions.
 - Ask, what *kind of application* are you designing?
   - simulation, constraint system, database, real-time system, batch processing, stream processing etc.
+- Service/System/REST APIs should be simple, understadable, extensible, idempotent and stateless if possible.
+- *Evolve through data*, data lives longer than code.
+- *Command query segragation*
 
 ** Low Level
+- Computer programs and computational processes.
+- Avoid unnecessary work. If not, reduce unnecessary work. Parallelize. Compress.
 - *Elements of a good system*: primitives, means of combination and means of abstraction.
   - A good system defines a *language* people use to communicate with the system and with each other.
+  - A good programming language allows the programmer to think better.
+  - Similary, good software should allow its users to think and therefore work better.
 - There is no difference between *code and data*. Don't treat them differently.
 - Give it a *name*.
 - *Decompose(take derivative)* system down to its smallest useful parts and then build up.
-- Have you created *abstraction barriers*? Do you need them?
+- *Return procedures* when you know what the operation is but dont have all the arguments available. This allows
+  manipulation of procedures and delaying their application until all arguments are available.
+- *Accept procedures* as arguments to implement something generic. *Return procedures* to allow procedure manipulation
+  as objects and delayed execution.
 - Don't design using a flowchart but use *information hiding* as a principle.
+- Dont just design good abstractions also design good *data structures* to support those abstractions.
 - Use *wishful thinking* as a principle for designing abstractions.
+- *Data abstraction* isolate part of program that represent data objects from parts that use data objects.
+  - involes defining *concrete representation* that is independent of its usage and *constructors, selectors* for usage.
+- Just *constructors and selectors* are not enough, definition of data should also involve conditions that these
+  procedures must fulfill in order to be a valid representation of that data.
+- Have you created *abstraction barriers*? Do you need them?
+- Setup and use the data abstractions with *closure property*.
+- Write programs for computers as well as other programmers.
+- Define *conventional interface* where you can.
+- Provide *transforms* (to itself) for immutable data in addition to *constructors, selectors and preconditions*.
+- *Multiple representations* of data exits, therefore besides isolating representation from use, abstraction barriers
+  should:
+  1. isolate different design choices from each other
+  2. permit different choices to coexist in a single program
+  3. permit programmers to incorporate modules into larger systems additively without redesign/reimplementation.
+- *Abstraction barriers* provide horizontal separation and *Multiple Representations* provide vertical separation.
+- Choose between *calling things* (Coral) vs *message passing* (REST).
+- Use *coercion* to implement systems with generic operations. Coercion on type tower is easier than a type tree.
 - Do you need a *name or store* for your value?
-- Mutation itself isn't bad, it is better design choice sometimes. It is the system design choices is forces you to take
+- Mutation itself isn't bad, it is better design choice sometimes. It is the system design choices it forces you to take
   realted to time and space complexity, readability, maintainability, abstraction etc. result in a bad system.
 - Similarly immutability isn't always good, it too can lead to bad design in some cases. e.g. try to implement Queue
   with immutable data structures.
 - Compound data is used to model real-world objects that have several aspects. We achieve data abstraction over these
   compound data objects by using *constructors, selectors, and mutators*.
 - Mutators introduce *state* into the objects which then become dependent on *time*. Therefore, mutate only if
-  absolultely necessary.
+  absolultely necessary. You go from relying on value of variable x to value of x(t) where t is time.
 - Along with asking whether you need a *name or a store* for value, you can also ask does the value change over time and
   if so, how. This can guide your mutable vs immutable design decision.
 - Design at an abstract level without notion of actual time, introduce actual time when absolutely necessary.
 - Use *connecting procedures* if necessary to prevent two ore more objects from knowing about each other.
-- Dont just design good abstractions also design good *data structures* to support those abstractions.
 - Ask, what *kind of application* are you designing?
   - simulation, constraint system, database, real-time system, batch processing, stream processing etc.
+- Things in the real/physical world happen concurrently, therefore, computational processes too should be able to model
+  *concurrent real world behaviour*. Write programs from the get-go as if they were to be executed concurrently.
+- Three ways of modeling systems: *immutable, mutable, concurrent*. Immutable and immutable-concurrent modeling is
+  relatively easy. Just mutable modeling is also easy. mutable-concurrent modeling difficult but essential.
+- Can you reduce system requirement from "no two processes that change any shared state variables can occur at the same
+  time" to "a concurrent system should produce the same result as if the processes had run sequentially in some order".
+- Mutations using assignment is not the only way to model "state", *streams with delayed evaluation* offer another
+  approach for modeling state but it comes with its own problems.
+- Slight change in approach at lower level can have huge impact at higher levels. *Streams and implicit streams*.
+- 
 
 
+*** Concurrent Systems 
+- Use serialization to control access to shared variables. Serialization is implemented using mutex.
+- 
+
+** What do we want to do with systems while building and after building them?
+*** Low level
+- it is all about people, software systems should let them work and think better.
+- name them
+- modular
+- good abstractions
+- good data structure
+- test and prove them correct
+- end-to-end test
+- writing programs for computers as well as other programmers.
+- allow additive evolution
+
+*** High level
+- all properties of low level
+- develop parallely with speed and agility
+- deploy and govern independently
+- monitor them and react when they fail
+- fault tolerant, resilient
+- sync data between them
+- lower costs and maintenance
+- generalize systems so that they can be used in other places
+
+** Operational Excellence Philisophy
+*** Cultivate "always improve" mentality because everything can be improved.
+*** Development and Testing
+- Enable single machine deployment of service so it is easy to test the whole thing. If it is not, engineers will lie/assume
+  that they tested it.
+- Design for incremental release or evolution.
+- Deal with failures/exceptions/timeouts in other services. Think about blast radius.
+*** Deployment
+- Ship frequently and allow rollback.
+- One-box setup. Limit blast radius.
+*** Production
+- What are the costs of running *operations*? Hardware costs are the highest. Maintenance is next
+- Dont make people do boring *on-call/operations* tasks. Even the best will make mistake because it is boring.
+- Causes of *failure* in order of frequency (1. software, 2. people, 3. hardware)
+- Produce events, *monitor* them, and keep tuning how many alerts you create.. not too many, not too
+  less.. Check customer-issue/alert ratio..
+- Bug reproduction is difficult, drop enough system state in the logs so that you can figure whats going on.
+- Create a runbook.
+- Evolve through data, data lives longer than code.
+- ?versioning of data and apis best practices. canary. API gateway.
+- ?beta/gamma/prod environments best practices. one box.
+**** Handling Scale
+- Provision server/DB capacity early. Plan for traffic spikes and growth rates.
+- Setup fail overs and replica in multi region/AZ.
+- Prewarm load balancers.
+- Load and performance tests. Chaos monkey.
+**** Monitoring Systems
+- Allow OODA.
+- Should allow 
+  - observability - birds eye view of all systems
+  - reliability - monitoring system itself should be reliable
+  - performance - latency and statleness should be minimal
+  - usability - anyone at company should be able to use it
+- Metrics
+  - Annotation library and standard APIs
+  - Include cpu, memory, disk space, network i/o.
+  - Include latency, throughput, errors, p50, p90, p99
+  - Include success, data type/source, error code, domain-specific id
+  - Include release version, environment, region
+  - DB CPU, connection, write/read throughput, latency, queue size.
+- Dashboards
+*** Production Issue Handling and COE
+- 5 Whys?
+- Root cause analysis and remediation is a must.
+
+
+** Team Leading Philisophy
+- Strive for simplicity.
+- Teach them and respect them. They are already the best just guide them.
+- You cannot control other people, you can only guide them.
+- Teach them about trade-offs because thats a major portion of daily decision making.
+- Challenge seniors and listen to juniors. Ask them to challenge you.
+- Lead with questions. Lead with code. Set an example.
+- Carrot and Stick. Change the incentives.
+- Maintain a list of blogs/videos/papers/books that you would like to share and discuss with the team.
+- Don't confuse the team, lead with conviction. Accept when things are wrong.
+- Amazon leadership principles. Let multiple projects/ideas/products grow but hold them accountable.
+- Build a community. People have different skills, utilize all.

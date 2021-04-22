@@ -14,15 +14,96 @@
    - e.g. for a file transfer system, ensuring correctness in each module vs ensuring correctness at the ends by taking
     hash and comparing them. With the former there is a chance of error even if individual modules guanrantee 99.9%
     correctness; whereas, in the later there is no chance of error.
-** Creteria For Decomposing Systems In Modules :system_design:software_engineering:
+** Criteria For Decomposing Systems In Modules :system_design:software_engineering:
    - https://www.youtube.com/watch?v=NF5tRQb0Dpc
    - https://dl.acm.org/citation.cfm?doid=361598.361623
    - Follow data abstraction and information hiding principle in design.
+   - Decomposition before code is written
+   - Start with what are the assumptions.
+   - Then reason about what assumptions are going to change.
    - Decomposition of a system into modules based on flow chart of implementation for application is always an incorrect
      choice.
    - Decomposition should be based on the design decisions that are likely to change. Each module is then designed to
      hide such a design decision from others.
    - Since design decisions transcend the time of execution, modules will not correspond to steps in processing.
+** Programming with Abstract Data Types
+- https://www.youtube.com/watch?v=w2PmXJL8_WM&list=PLOuhQnxVenf1AI66Ji4K_4I-ItmVLQKym&index=6
+- https://dl.acm.org/doi/10.1145/800233.807045
+- Definition : abstraction is a mechanism that permits expression of relevant details and suppression of irrelevant
+  details. 
+- Operator clusters with data.
+- build the system One decision at a time so you can reason correctness of an abstraction. I.e. first you prove that the
+  usage of abstraction is correct and then you prove be that representation of the abstraction is correct.
+- use information hiding as a principle for programming
+** Information Distribution Aspects of Design Methodology
+- https://www.youtube.com/watch?v=brINBB91TK4&list=PLOuhQnxVenf1AI66Ji4K_4I-ItmVLQKym&index=8
+- https://www.researchgate.net/publication/221331713_Information_Distribution_Aspects_of_Design_Methodology
+- Documentation and information sharing about a system also affects a system and it's design.
+- he two main criteria of any system design are 1. We want to be able to make changes to system in future. 2. We want
+  to be able to prove them correct.
+- When you design an API, its callers don't just depend on the parameters and result data, they also depend on the
+  assumptions they make about the API and its behavior. i.e. "connection" between modules are the assumptions modules
+  make about each other. 
+- making changes to system and proving them correct depends on what assumptions other callers have made about our
+  system. 
+- a clever programmer of client makes use of all the information they have, but a skilled programmer makes use of all
+  the relevant information they have and ignore other information although it can be used. 
+- and clever programs cause trouble later
+- So it is better to restrict the information about internal data or implementation with the callers of the API. That
+  way their assumptions are reduced which helps to change the internal implementation of API any time. 
+- however, over time, as the number of users of API grows, all observable behavior of API is exposed and thus internal
+  data and implementation becomes indirectly visible to callers. This can't be avoided. 
+- note that early decisions in system are much harder to change than later decisions so take early decisions very carefully.
+** The UNIX Time-Sharing System
+- https://www.youtube.com/watch?v=P01T4G5I2lk&list=PLOuhQnxVenf1AI66Ji4K_4I-ItmVLQKym&index=2
+- https://people.eecs.berkeley.edu/~brewer/cs262/unix.pdf
+- File System
+  - Doesn't expect any special structure within file, it is just a stream of bytes.
+  - Directories are like any other files with few special properties so that only system can write it. They provide
+    mappings from directories to files.
+  - Special files: I/O devices are associated with at least 1 such file. They are read/written to just like ordinary
+    file but result in activation of associated device.
+  - Supports mounting
+  - Supports access control
+  - No difference between random or sequential IO
+  - File API - create, open, read, write, seek
+  - No effort to support concurrency because they were deemed to be unnecessary and insufficient.
+  - Implemented using inodes which contains metadata and pointer to block of data
+- Processes and Images
+  - fork, pipe, execute, exit
+- Shell
+- Designed mostly for interactive use case but it also works for batch.
+** RISC vs CISC
+- https://www.youtube.com/watch?v=o14ecAoGN8w&list=PLOuhQnxVenf1AI66Ji4K_4I-ItmVLQKym&index=11
+- https://doi.org/10.1145/641914.641917
+- Cost of total computer system when using RISC vs CISC. Is the cost of complex instruction set worth it?
+- Reasons for complexity
+  - Speed of memory vs speed of CPU: CPU was 10 times faster than memory back then, loading too many instructions took
+    time so single complex instruction made sense.
+  - Microprogramming: Taking common subroutine and putting in instruction set itself e.g. polynomial evaluation, string
+    manipulation, etc.
+  - Code density: since memory was slower, the idea was to make code size smaller by using complex instruction set.
+  - Marketing: People pay for complex things although the overall cost was much higher. complexity vs cost-effectiveness.
+  - Upward compatibility: Manufacturers never removed unused or old instructions. Competitor pressure.
+  - Support for high level language: It was hoped that complex instruction would support high level langugage better but
+    they didn't.
+- Is the complexity being used?
+  - Not really. Clever assembly language programmers used it but as high level languages started being widely used,
+    compiler writers started relying on simple instructions, compilers couldn't use complex instructions easily.
+- Consequences Of CISC Implementations
+  - Faster memory: Memory got cheaper and faster over time. Cache memory and pareto principle meant that overall memory
+    subsystem was able to keep up with CPU.
+  - Irrational Implementations: It turned out that CISC implementations were sometimes not really faster than
+    implementations using sequence of RISC instructions.
+  - Lengthned Design Time: It takes longer to design a CISC computer.
+  - Increasd Design Errors: Complexity leads to errors.
+  - Speed: RISC performs better because of its simplicity.
+  - Better use of CHIP area: Saved area can be used for caches, faster transistors or even extra pipelining.
+- Conclusion
+  - Think about the whole system and its cost effectiveness.
+  - Special case of end-to-end argument in system design.
+  - Today energy consumption is another criteria in favor of RISC.
+** 
 * The Power Of Epidemics
 ** Definition of Scalable
 - If we increase the resources in a system it results in increased performance proportional to the resources added.
